@@ -12,14 +12,27 @@ Aplicación de consola interactiva desarrollada con **Node.js** puro bajo el par
 ##  Arquitectura del Proyecto
 
 ```text
-├── models/
-│   └── Employee.js             # Entidad de dominio y generación de ID único
-├── repositories/
-│   └── EmployeeRepository.js   # Capa de acceso y manipulación de datos en memoria
-├── services/
-│   └── EmployeeService.js      # Lógica de negocio y validación de reglas
-├── index.js                    # Interfaz de consola y menú interactivo
-└── package.json                # Configuración del proyecto
+acme-employee-app/
+│
+├── src/
+│   ├── config/              <-- Configuraciones globales (si aplica)
+│   ├── models/              <-- Entidades de Dominio (POO pura)
+│   │   └── Employee.js
+│   │
+│   ├── repositories/        <-- Capa de Persistencia / Acceso a Datos
+│   │   ├── interfaces/      <-- (Opcional avanzado) Contratos de repositorio
+│   │   └── EmployeeRepository.js
+│   │
+│   ├── services/            <-- Capa de Lógica de Negocio (Casos de uso / Reglas)
+│   │   └── EmployeeService.js
+│   │
+│   ├── controllers/         <-- Capa de Presentación / Control de Interfaz
+│   │   └── EmployeeController.js
+│   │
+│   └── index.js             <-- Composition Root (Punto de entrada puro)
+│
+├── package.json
+└── README.md
 ```
 
 ##  Requerimientos y Reglas de Negocio
