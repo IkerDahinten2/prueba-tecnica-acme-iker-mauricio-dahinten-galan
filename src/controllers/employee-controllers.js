@@ -80,14 +80,17 @@ class EmployeeController {
     console.log(`\n¡Empleado registrado con éxito! ID Único: ${newEmp.id}`);
   }
 
-  #handleList() {
+#handleList() {
     console.log('\n--- Lista de Empleados ---');
     const employees = this.employeeService.getAllEmployees();
     if (employees.length === 0) {
       console.log('No hay empleados registrados.');
       return;
     }
-    console.table(employees);
+    employees.forEach((emp, index) => {
+      console.log(`\n[Empleado ${index + 1}]:`);
+      console.log(emp);
+    });
   }
 
   async #handleFind() {
@@ -98,16 +101,16 @@ class EmployeeController {
     console.log(emp);
   }
 
-  async #handleUpdate() {
+async #handleUpdate() {
     console.log('\n--- Actualizar Empleado ---');
     const employees = this.employeeService.getAllEmployees();
     if (employees.length === 0) {
       console.log('No hay empleados para actualizar.');
       return;
     }
-    console.table(employees.map(e => ({ id: e.id, identificación: e.identification, nombre: `${e.firstName} ${e.lastName}` })));
+    console.table(employees.map(e => ({ identificación: e.identification, nombre: `${e.firstName} ${e.lastName}` })));
     
-    const id = await this.rl.question('Ingrese el ID único del empleado a actualizar: ');
+    const identificationSearch = await this.rl.question('Ingrese la identificación del empleado a actualizar: ');
     
     console.log('\nIngrese los nuevos datos (deje en blanco para no modificar):');
     const identification = await this.rl.question('Nueva identificación: ');
@@ -135,22 +138,22 @@ class EmployeeController {
     if (position.trim()) updatedData.position = position;
     if (salary.trim()) updatedData.salary = salary;
 
-    const updatedEmp = this.employeeService.updateEmployee(id, updatedData);
+    const updatedEmp = this.employeeService.updateEmployee(identificationSearch, updatedData);
     console.log('\n¡Empleado actualizado con éxito!');
     console.log(updatedEmp);
   }
 
-  async #handleDelete() {
+async #handleDelete() {
     console.log('\n--- Eliminar Empleado ---');
     const employees = this.employeeService.getAllEmployees();
     if (employees.length === 0) {
       console.log('No hay empleados para eliminar.');
       return;
     }
-    console.table(employees.map(e => ({ id: e.id, identificación: e.identification, nombre: `${e.firstName} ${e.lastName}` })));
+    console.table(employees.map(e => ({ identificación: e.identification, nombre: `${e.firstName} ${e.lastName}` })));
     
-    const id = await this.rl.question('Ingrese el ID único del empleado que desea eliminar: ');
-    this.employeeService.deleteEmployee(id);
+    const identification = await this.rl.question('Ingrese la identificación del empleado que desea eliminar: ');
+    this.employeeService.deleteEmployee(identification);
     console.log('\n¡Empleado eliminado con éxito!');
   }
 }

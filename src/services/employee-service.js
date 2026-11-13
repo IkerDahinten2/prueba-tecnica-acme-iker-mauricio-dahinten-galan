@@ -1,4 +1,4 @@
-import Employee from '../models/Employee.js';
+import Employee from '../models/employee.js';
 
 class EmployeeService {
   constructor(employeeRepository) {
@@ -94,10 +94,10 @@ class EmployeeService {
     return employee;
   }
 
-  updateEmployee(id, updatedData) {
-    const existingEmployee = this.employeeRepository.findById(id);
+  updateEmployee(identificationSearch, updatedData) {
+    const existingEmployee = this.employeeRepository.findByIdentification(identificationSearch);
     if (!existingEmployee) {
-      throw new Error('No se encontró el empleado que intenta actualizar.');
+      throw new Error('No se encontró el empleado que intenta actualizar con esa identificación.');
     }
 
     const mergedData = { ...existingEmployee, ...updatedData };
@@ -113,16 +113,16 @@ class EmployeeService {
     if (mergedData.gender) mergedData.gender = mergedData.gender.toUpperCase();
     if (mergedData.salary) mergedData.salary = Number(mergedData.salary);
 
-    return this.employeeRepository.update(id, mergedData);
+    return this.employeeRepository.update(existingEmployee.id, mergedData);
   }
 
-  deleteEmployee(id) {
-    const existingEmployee = this.employeeRepository.findById(id);
+  deleteEmployee(identification) {
+    const existingEmployee = this.employeeRepository.findByIdentification(identification);
     if (!existingEmployee) {
-      throw new Error('No se encontró el empleado que intenta eliminar.');
+      throw new Error('No se encontró el empleado que intenta eliminar con esa identificación.');
     }
 
-    return this.employeeRepository.delete(id);
+    return this.employeeRepository.delete(existingEmployee.id);
   }
 }
 

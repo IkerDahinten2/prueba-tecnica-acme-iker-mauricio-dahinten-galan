@@ -1,6 +1,6 @@
-import EmployeeRepository from './repositories/EmployeeRepository.js';
-import EmployeeService from './services/EmployeeService.js';
-import EmployeeController from './controllers/EmployeeController.js';
+import EmployeeRepository from './repositories/employee-reposotories.js';
+import EmployeeService from './services/employee-service.js';
+import EmployeeController from './controllers/employee-controllers.js';
 
 const repository = new EmployeeRepository();
 const employeeService = new EmployeeService(repository);

@@ -15,12 +15,10 @@ Aplicación de consola interactiva desarrollada con **Node.js** puro bajo el par
 acme-employee-app/
 │
 ├── src/
-│   ├── config/              <-- Configuraciones globales (si aplica)
 │   ├── models/              <-- Entidades de Dominio (POO pura)
 │   │   └── Employee.js
 │   │
 │   ├── repositories/        <-- Capa de Persistencia / Acceso a Datos
-│   │   ├── interfaces/      <-- (Opcional avanzado) Contratos de repositorio
 │   │   └── EmployeeRepository.js
 │   │
 │   ├── services/            <-- Capa de Lógica de Negocio (Casos de uso / Reglas)

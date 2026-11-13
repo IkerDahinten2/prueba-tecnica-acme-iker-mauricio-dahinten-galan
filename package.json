@@ -1,7 +1,7 @@
 {
-  "name": "prueba-tecnica-acme",
-  "version": "0.0.1",
-  "description": "Prueba Tecnica con Node.js ",
+  "name": "examen-pushup",
+  "version": "1.0.0",
+  "description": "Prueba tecnica Push Up",
   "homepage": "https://github.com/IkerDahinten2/prueba-tecnica-acme-iker-mauricio-dahinten-galan#readme",
   "bugs": {
     "url": "https://github.com/IkerDahinten2/prueba-tecnica-acme-iker-mauricio-dahinten-galan/issues"
@@ -15,7 +15,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
